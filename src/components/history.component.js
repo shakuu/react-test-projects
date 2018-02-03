@@ -1,5 +1,7 @@
 import React from 'react'
 
+import '../history.css'
+
 const boardCoordinatesByIndex = new Map([
   [0, 'Row: 1, Col 1'],
   [1, 'Row: 1, Col 2'],
@@ -19,7 +21,7 @@ export default function BoardHistory(props) {
 
     return (
       <li key={stepNumber}>
-        <button onClick={() => props.onJumpTo(stepNumber)}>
+        <button className={props.stepNumber === stepNumber ? 'active-step' : ''} onClick={() => props.onJumpTo(stepNumber)}>
           {description}
         </button>
       </li>
