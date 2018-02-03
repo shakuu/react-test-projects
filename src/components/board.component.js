@@ -3,18 +3,22 @@ import React from 'react'
 import Square from './square.component'
 
 export default function Board(props) {
+  const rowSize = props.rowSize || (Math.sqrt(props.squares.length) | 0);
 
   return (
     <div>
-      {Array(3).fill(null).map((_, row) => {
-        const currentRow = row * 3;
+      {Array(rowSize).fill(null).map((_, row) => {
+        const currentRow = row * rowSize;
+
         return (
           <div key={row} className="board-row">
-            {Array(3).fill(null).map((_, col) => {
+            {Array(rowSize).fill(null).map((_, col) => {
               const squareIndex = currentRow + col
+              const squareValue = props.squares[squareIndex]
+
               return (
                 <Square key={col}
-                  value={props.squares[squareIndex]}
+                  value={squareValue}
                   onClick={() => props.onClick(squareIndex)} />
               )
             })}
