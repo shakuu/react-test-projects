@@ -14,10 +14,26 @@ const boardCoordinatesByIndex = new Map([
   [8, 'Row: 3, Col 3'],
 ])
 
+function getHistoryButtonLabel(stepNumber, clickedSquare) {
+
+  const isFirstItem = stepNumber === 0
+  if (isFirstItem) {
+    return 'Go to game start'
+  }
+
+  return `#${stepNumber}: ${boardCoordinatesByIndex.get(clickedSquare)}`
+}
+
 export default function BoardHistory(props) {
 
-  return props.history.map((history, stepNumber) => {
-    const description = stepNumber === 0 ? 'Go to game start' : 'Go to move #' + stepNumber + ': ' + boardCoordinatesByIndex.get(history.clickedSquare);
+  const historyLength = props.history.length;
+  const isAscending = props.isAscending === void 0 ? true : props.isAscending;
+
+  return Array.from({ length: historyLength }).map((_, index) => {
+
+    const stepNumber = isAscending ? index : historyLength - 1 - index
+    const historyItem = props.history[stepNumber]
+    const description = getHistoryButtonLabel(stepNumber, historyItem.clickedSquare)
 
     return (
       <li key={stepNumber}>
