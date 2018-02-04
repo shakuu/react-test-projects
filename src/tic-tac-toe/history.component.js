@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
 
 import '../styles/history.css'
 
@@ -73,7 +74,7 @@ export default class BoardHistory extends React.Component {
     return (
       <div className="game-history">
         <ButtonDropdown isOpen={this.state.sortDropdownOpen} toggle={this.handelSortDropdownToggle.bind(this)}>
-          <DropdownToggle color="primary" disabled={this.shouldDisabledropdown(historyLength)} caret>
+          <DropdownToggle color="secondary" disabled={this.shouldDisabledropdown(historyLength)} caret>
             Sort History
         </DropdownToggle>
           <DropdownMenu>
@@ -82,7 +83,7 @@ export default class BoardHistory extends React.Component {
             <DropdownItem onClick={() => this.handleSortButtonClick(true)}>Oldest first</DropdownItem>
           </DropdownMenu>
         </ButtonDropdown>
-        <ol>
+        <ListGroup>
           {Array.from({ length: historyLength }).map((_, index) => {
 
             const stepNumber = isAscending ? index : historyLength - 1 - index
@@ -90,16 +91,16 @@ export default class BoardHistory extends React.Component {
             const description = getHistoryButtonLabel(stepNumber, historyItem)
 
             return (
-              <li key={stepNumber}>
-                <button
-                  className={this.props.stepNumber === stepNumber ? 'active-step' : ''}
-                  onClick={() => this.props.onJumpTo(stepNumber)}>
-                  {description}
-                </button>
-              </li>
+              <ListGroupItem
+                key={stepNumber}
+                tag="button"
+                active={this.props.stepNumber === stepNumber}
+                onClick={() => this.props.onJumpTo(stepNumber)}>
+                {description}
+              </ListGroupItem>
             )
           })}
-        </ol>
+        </ListGroup>
       </div>
     )
   }

@@ -73,15 +73,17 @@ export default class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
-          <Board
-            rowSize={3}
-            board={currentBoard}
-            onClick={(i) => this.handleBoardClick(i)} />
-        </div>
-        <div className="game-info">
           <BoardStatus
             board={currentBoard}
             nextPlayer={nextPlayer} />
+          <div className="board-container">
+            <Board
+              rowSize={3}
+              board={currentBoard}
+              onClick={(i) => this.handleBoardClick(i)} />
+          </div>
+        </div>
+        <div className="game-info">
           <BoardHistory
             history={this.state.history}
             stepNumber={this.state.stepNumber}

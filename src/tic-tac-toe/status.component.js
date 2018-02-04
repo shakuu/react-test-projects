@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Alert } from 'reactstrap';
+
 export default function BoardStatus(props) {
 
   const status = props.board.isWon
@@ -10,9 +12,10 @@ export default function BoardStatus(props) {
 
   return (
     <div className="game-status">
-      <h3>
+      <Alert
+        color="info">
         {status}
-      </h3>
+      </Alert>
     </div>
   )
 }

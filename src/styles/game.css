@@ -4,7 +4,13 @@
   .game .game-board {
     flex: 1;
     display: flex;
-    justify-content: flex-end;
-    margin-right: 1rem; }
+    margin-right: 1rem;
+    flex-direction: column; }
+    .game .game-board .board-container {
+      display: flex;
+      justify-content: center; }
   .game .game-info {
     flex: 1; }
+    .game .game-info .btn-group {
+      height: 42px;
+      margin-bottom: 12px; }
