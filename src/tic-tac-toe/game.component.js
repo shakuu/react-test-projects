@@ -16,7 +16,8 @@ export default class Game extends React.Component {
         squares: Array(9).fill(null),
         clickedSquare: null,
         player: null,
-        isWon: false
+        isWon: false,
+        winningLine: null
       }],
       stepNumber: 0,
       xIsNext: true
@@ -35,14 +36,16 @@ export default class Game extends React.Component {
 
     const player = this.state.xIsNext ? 'X' : 'O'
     squares[clickedSquareIndex] = player
-    const isWon = !!calculateWinner(squares)
+    const winningLine = calculateWinner(squares)
+    const isWon = winningLine !== null;
 
     this.setState({
       history: history.concat([{
         squares: squares,
         clickedSquare: clickedSquareIndex,
         player: player,
-        isWon: isWon
+        isWon: isWon,
+        winningLine: winningLine
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext
