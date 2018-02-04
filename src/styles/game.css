@@ -1,5 +1,6 @@
 .game {
-  display: flex; }
+  display: flex;
+  padding: 1rem; }
   .game .game-board {
     flex: 1;
     display: flex;

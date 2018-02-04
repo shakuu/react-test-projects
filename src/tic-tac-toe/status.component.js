@@ -10,7 +10,9 @@ export default function BoardStatus(props) {
 
   return (
     <div className="game-status">
-      {status}
+      <h3>
+        {status}
+      </h3>
     </div>
   )
 }
