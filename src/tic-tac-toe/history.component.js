@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+
 import '../styles/history.css'
 
 const boardCoordinatesByIndex = new Map([
@@ -38,14 +40,22 @@ export default class BoardHistory extends React.Component {
     super(props)
 
     this.state = {
-      isAscending: true
+      isAscending: true,
+      sortDropdownOpen: false
     }
   }
 
-  handleSortButtonClick() {
+  handleSortButtonClick(isAscending) {
 
     this.setState({
-      isAscending: !this.state.isAscending
+      isAscending: isAscending
+    })
+  }
+
+  handelSortDropdownToggle() {
+
+    this.setState({
+      sortDropdownOpen: !this.state.sortDropdownOpen
     })
   }
 
@@ -56,9 +66,16 @@ export default class BoardHistory extends React.Component {
 
     return (
       <div className="game-history">
-        <button onClick={this.handleSortButtonClick.bind(this)}>
-          Sort History {sortButtonLabel}
-        </button>
+        <ButtonDropdown isOpen={this.state.sortDropdownOpen} toggle={this.handelSortDropdownToggle.bind(this)}>
+          <DropdownToggle caret>
+            Sort History
+        </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem onClick={() => this.handleSortButtonClick(false)}>Newest first</DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem onClick={() => this.handleSortButtonClick(true)}>Oldest first</DropdownItem>
+          </DropdownMenu>
+        </ButtonDropdown>
         <ol>
           {Array.from({ length: historyLength }).map((_, index) => {
 
