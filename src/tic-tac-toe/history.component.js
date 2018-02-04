@@ -18,10 +18,11 @@ function getHistoryButtonLabel(stepNumber, clickedSquare) {
 
   const isFirstItem = stepNumber === 0
   if (isFirstItem) {
-    return 'Go to game start'
+    return 'Game start'
   }
 
-  return `#${stepNumber}: ${boardCoordinatesByIndex.get(clickedSquare)}`
+  const player = stepNumber % 2 === 0 ? 'O' : 'X'
+  return `#${stepNumber} ${player}: ${boardCoordinatesByIndex.get(clickedSquare)}`
 }
 
 export default class BoardHistory extends React.Component {
