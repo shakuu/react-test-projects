@@ -1,6 +1,6 @@
 import React from 'react'
 
-import '../history.css'
+import '../styles/history.css'
 
 const boardCoordinatesByIndex = new Map([
   [0, 'Row: 1, Col 1'],
