@@ -1,6 +1,11 @@
 const express = require('express')
 const app = express()
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.use(express.static('./public/tic-tac-toe'))
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.get('/', (req, res) => {
+
+    res.sendfile('./public/tic-tac-toe/index.js')
+})
+
+app.listen(3000, () => console.log('demo-server listening on port 3000!'))
