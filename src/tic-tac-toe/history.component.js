@@ -24,23 +24,52 @@ function getHistoryButtonLabel(stepNumber, clickedSquare) {
   return `#${stepNumber}: ${boardCoordinatesByIndex.get(clickedSquare)}`
 }
 
-export default function BoardHistory(props) {
+export default class BoardHistory extends React.Component {
 
-  const historyLength = props.history.length;
-  const isAscending = props.isAscending === void 0 ? true : props.isAscending;
+  constructor(props) {
+    super(props)
 
-  return Array.from({ length: historyLength }).map((_, index) => {
+    this.state = {
+      isAscending: true
+    }
+  }
 
-    const stepNumber = isAscending ? index : historyLength - 1 - index
-    const historyItem = props.history[stepNumber]
-    const description = getHistoryButtonLabel(stepNumber, historyItem.clickedSquare)
+  handleSortButtonClick() {
+
+    this.setState({
+      isAscending: !this.state.isAscending
+    })
+  }
+
+  render() {
+    const historyLength = this.props.history.length;
+    const isAscending = this.state.isAscending
+    const sortButtonLabel = isAscending ? 'Descending' : 'Ascending'
 
     return (
-      <li key={stepNumber}>
-        <button className={props.stepNumber === stepNumber ? 'active-step' : ''} onClick={() => props.onJumpTo(stepNumber)}>
-          {description}
+      <div className="game-history">
+        <button onClick={this.handleSortButtonClick.bind(this)}>
+          Sort History {sortButtonLabel}
         </button>
-      </li>
+        <ol>
+          {Array.from({ length: historyLength }).map((_, index) => {
+
+            const stepNumber = isAscending ? index : historyLength - 1 - index
+            const historyItem = this.props.history[stepNumber]
+            const description = getHistoryButtonLabel(stepNumber, historyItem.clickedSquare)
+
+            return (
+              <li key={stepNumber}>
+                <button
+                  className={this.props.stepNumber === stepNumber ? 'active-step' : ''}
+                  onClick={() => this.props.onJumpTo(stepNumber)}>
+                  {description}
+                </button>
+              </li>
+            )
+          })}
+        </ol>
+      </div>
     )
-  })
+  }
 }
