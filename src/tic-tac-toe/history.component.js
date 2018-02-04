@@ -59,15 +59,21 @@ export default class BoardHistory extends React.Component {
     })
   }
 
+  shouldDisabledropdown(historyLength) {
+    historyLength = historyLength || 1;
+
+    // return historyLength <= 1;
+    return false;
+  }
+
   render() {
     const historyLength = this.props.history.length;
     const isAscending = this.state.isAscending
-    const sortButtonLabel = isAscending ? 'Descending' : 'Ascending'
 
     return (
       <div className="game-history">
         <ButtonDropdown isOpen={this.state.sortDropdownOpen} toggle={this.handelSortDropdownToggle.bind(this)}>
-          <DropdownToggle disabled={true} caret>
+          <DropdownToggle color="primary" disabled={this.shouldDisabledropdown(historyLength)} caret>
             Sort History
         </DropdownToggle>
           <DropdownMenu>

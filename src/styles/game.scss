@@ -1,7 +1,11 @@
 .game {
     display: flex;
+    padding: 1rem;
     & .game-board {
         flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 1rem;
     }
     & .game-info {
         flex: 1;
