@@ -25,8 +25,11 @@ function getHistoryButtonLabel(stepNumber, historyItem) {
   if (historyItem.isWon) {
     return `#${stepNumber} ${historyItem.player} Won: ${coordinatesLabel}`
   }
+  if (historyItem.isDraw) {
+    return `#${stepNumber} ${historyItem.player} Draw: ${coordinatesLabel}`
+  }
 
-  return `#${stepNumber} ${historyItem.player}: ${coordinatesLabel}`
+  return `#${stepNumber} ${historyItem.player} Move: ${coordinatesLabel}`
 }
 
 export default class BoardHistory extends React.Component {
