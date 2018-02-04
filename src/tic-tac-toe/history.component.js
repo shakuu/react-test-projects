@@ -67,7 +67,7 @@ export default class BoardHistory extends React.Component {
     return (
       <div className="game-history">
         <ButtonDropdown isOpen={this.state.sortDropdownOpen} toggle={this.handelSortDropdownToggle.bind(this)}>
-          <DropdownToggle caret>
+          <DropdownToggle disabled={true} caret>
             Sort History
         </DropdownToggle>
           <DropdownMenu>

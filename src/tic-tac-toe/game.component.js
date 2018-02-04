@@ -6,6 +6,8 @@ import BoardStatus from './status.component'
 
 import calculateWinner from '../utilities/calculate-winner'
 
+import '../styles/game.css'
+
 export default class Game extends React.Component {
 
   constructor(props) {
