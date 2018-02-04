@@ -8,4 +8,4 @@ app.get('/', (req, res) => {
     res.sendfile('./tic-tac-toe-tutorial/build/index.js')
 })
 
-app.listen(3000, () => console.log('demo-server listening on port 3000!'))
+app.listen(process.env.PORT || 3000, () => console.log('demo-server listening on port 3000!'))
