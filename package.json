@@ -4,6 +4,7 @@
   "description": "",
   "main": "./src/app.js",
   "scripts": {
+    "postinstall": "cd tic-tac-toe-tutorial && yarn install && yarn build",
     "start": "node ./src/app.js",
     "test": "test"
   },
