@@ -1,3 +1,7 @@
 .square-highlight {
     color: greenyellow;
 }
+
+.square-opacity {
+    color: rgba(0, 0, 0, 0.1);
+}

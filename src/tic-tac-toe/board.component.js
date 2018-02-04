@@ -16,7 +16,10 @@ export default function Board(props) {
             {Array(rowSize).fill(null).map((_, col) => {
               const squareIndex = currentRow + col
               const squareValue = squares[squareIndex]
-              const highlightSquare = props.board.isWon && props.board.winningLine.indexOf(squareIndex) !== -1
+              let highlightSquare = null
+              if (props.board.isWon) {
+                highlightSquare = props.board.winningLine.indexOf(squareIndex) !== -1
+              }
 
               return (
                 <Square key={col}

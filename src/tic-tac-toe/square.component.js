@@ -4,8 +4,11 @@ import '../styles/square.css'
 
 function getSquareClassName(shouldHighlight) {
 
-  if (shouldHighlight) {
+  if (shouldHighlight === true) {
     return 'square square-highlight'
+  }
+  if (shouldHighlight === false) {
+    return 'square square-opacity'
   }
   return 'square'
 }
