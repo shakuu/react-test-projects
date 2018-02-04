@@ -14,15 +14,19 @@ const boardCoordinatesByIndex = new Map([
   [8, 'Row: 3, Col 3'],
 ])
 
-function getHistoryButtonLabel(stepNumber, clickedSquare) {
+function getHistoryButtonLabel(stepNumber, historyItem) {
 
   const isFirstItem = stepNumber === 0
   if (isFirstItem) {
     return 'Game start'
   }
 
-  const player = stepNumber % 2 === 0 ? 'O' : 'X'
-  return `#${stepNumber} ${player}: ${boardCoordinatesByIndex.get(clickedSquare)}`
+  const coordinatesLabel = boardCoordinatesByIndex.get(historyItem.clickedSquare)
+  if (historyItem.isWon) {
+    return `#${stepNumber} ${historyItem.player} Won: ${coordinatesLabel}`
+  }
+
+  return `#${stepNumber} ${historyItem.player}: ${coordinatesLabel}`
 }
 
 export default class BoardHistory extends React.Component {
@@ -57,7 +61,7 @@ export default class BoardHistory extends React.Component {
 
             const stepNumber = isAscending ? index : historyLength - 1 - index
             const historyItem = this.props.history[stepNumber]
-            const description = getHistoryButtonLabel(stepNumber, historyItem.clickedSquare)
+            const description = getHistoryButtonLabel(stepNumber, historyItem)
 
             return (
               <li key={stepNumber}>
