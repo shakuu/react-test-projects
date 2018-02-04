@@ -2,6 +2,7 @@ import React from 'react'
 
 import Board from './board.component'
 import BoardHistory from './history.component'
+import BoardStatus from './status.component'
 
 import calculateWinner from '../utilities/calculate-winner'
 
@@ -59,9 +60,7 @@ export default class Game extends React.Component {
   render() {
     const history = this.state.history
     const currentBoard = history[this.state.stepNumber]
-
-    const winner = calculateWinner(currentBoard.squares)
-    const status = winner ? 'Winner is ' + winner : this.state.xIsNext ? 'Next player: X' : 'Next player: O';
+    const nextPlayer = this.state.xIsNext ? 'X' : 'O'
 
     return (
       <div className="game">
@@ -72,8 +71,13 @@ export default class Game extends React.Component {
             onClick={(i) => this.handleBoardClick(i)} />
         </div>
         <div className="game-info">
-          <div>{status}</div>
-          <BoardHistory history={this.state.history} stepNumber={this.state.stepNumber} onJumpTo={(stepNumber) => this.handelJumpTo(stepNumber)} />
+          <BoardStatus
+            board={currentBoard}
+            nextPlayer={nextPlayer} />
+          <BoardHistory
+            history={this.state.history}
+            stepNumber={this.state.stepNumber}
+            onJumpTo={(stepNumber) => this.handelJumpTo(stepNumber)} />
         </div>
       </div>
     );
