@@ -3,7 +3,8 @@ import React from 'react'
 import Square from './square.component'
 
 export default function Board(props) {
-  const rowSize = props.rowSize || (Math.sqrt(props.squares.length) | 0);
+  const squares = props.board.squares
+  const rowSize = props.rowSize || (Math.sqrt(squares.length) | 0);
 
   return (
     <div>
@@ -14,11 +15,13 @@ export default function Board(props) {
           <div key={row} className="board-row">
             {Array(rowSize).fill(null).map((_, col) => {
               const squareIndex = currentRow + col
-              const squareValue = props.squares[squareIndex]
+              const squareValue = squares[squareIndex]
+              const highlightSquare = props.board.isWon && props.board.winningLine.indexOf(squareIndex) !== -1
 
               return (
                 <Square key={col}
                   value={squareValue}
+                  highlightSquare={highlightSquare}
                   onClick={() => props.onClick(squareIndex)} />
               )
             })}

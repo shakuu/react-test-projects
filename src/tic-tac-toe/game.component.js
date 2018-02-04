@@ -70,7 +70,7 @@ export default class Game extends React.Component {
         <div className="game-board">
           <Board
             rowSize={3}
-            squares={currentBoard.squares}
+            board={currentBoard}
             onClick={(i) => this.handleBoardClick(i)} />
         </div>
         <div className="game-info">
