@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
-import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 
 import '../styles/history.css'
 
