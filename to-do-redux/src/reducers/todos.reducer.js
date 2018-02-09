@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO } from './actions'
+import { ADD_TODO, TOGGLE_TODO } from '../actions/actions'
 
 
 export default function todos(state = [], action) {
