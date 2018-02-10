@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import '../styles/square.css'
 
@@ -21,4 +22,10 @@ export default function Square(props) {
       {props.value}
     </button>
   )
+}
+
+Square.propTypes = {
+  highlightSquare: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
 }
