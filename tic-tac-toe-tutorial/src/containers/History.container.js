@@ -72,9 +72,7 @@ const mapStateToProps = state => {
 
       case HistorySortTypes.newestFirst:
         const historyItemsLength = historyItems.length
-        historyItems = historyItems.map((_, index) => {
-          return historyItems[historyItemsLength - 1 - index]
-        })
+        historyItems = historyItems.sort((_, __) => 1)
         break
       case HistorySortTypes.xFirst:
         historyItems = historyItems.sort(getSortByPlayerCallback(true))
