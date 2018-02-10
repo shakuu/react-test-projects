@@ -30,36 +30,6 @@ export default class Game extends React.Component {
     }
   }
 
-  handleBoardClick(clickedSquareIndex) {
-
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
-
-    if (calculateWinner(squares) || squares[clickedSquareIndex]) {
-      return
-    }
-
-    const player = this.state.xIsNext ? 'X' : 'O'
-    squares[clickedSquareIndex] = player
-    const winningLine = calculateWinner(squares)
-    const isWon = winningLine !== null;
-    const isDraw = squares.every(square => square !== null)
-
-    this.setState({
-      history: history.concat([{
-        squares: squares,
-        clickedSquare: clickedSquareIndex,
-        player: player,
-        isWon: isWon,
-        isDraw: isDraw,
-        winningLine: winningLine
-      }]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext
-    })
-  }
-
   handelJumpTo(stepNumber) {
 
     this.setState({
