@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { ListGroup, ListGroupItem } from 'reactstrap';
+
+import SortContainer from '../containers/Sort.container'
 
 import '../styles/history.css'
 
@@ -42,16 +43,7 @@ export default class BoardHistory extends React.Component {
 
     return (
       <div className="game-history">
-        <ButtonDropdown isOpen={this.state.sortDropdownOpen} toggle={this.handelSortDropdownToggle.bind(this)}>
-          <DropdownToggle color="secondary" disabled={this.shouldDisabledropdown(historyLength)} caret>
-            Sort History
-        </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem onClick={() => this.handleSortButtonClick(false)}>Newest first</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem onClick={() => this.handleSortButtonClick(true)}>Oldest first</DropdownItem>
-          </DropdownMenu>
-        </ButtonDropdown>
+        <SortContainer />
         <ListGroup>
           {this.props.historyItems.map((item, index) => {
 
