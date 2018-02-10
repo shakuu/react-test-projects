@@ -71,7 +71,6 @@ const mapStateToProps = state => {
     switch (state.sortHistory) {
 
       case HistorySortTypes.newestFirst:
-        const historyItemsLength = historyItems.length
         historyItems = historyItems.sort((_, __) => 1)
         break
       case HistorySortTypes.xFirst:
