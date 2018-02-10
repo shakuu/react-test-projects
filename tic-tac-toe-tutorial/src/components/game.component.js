@@ -2,7 +2,9 @@ import React from 'react'
 
 import Board from './board.component'
 import BoardHistory from './history.component'
-import BoardStatus from './status.component'
+// import BoardStatus from './status.component'
+
+import BoardStatusContainer from '../containers/BoardStatus.container'
 
 import calculateWinner from '../utilities/calculate-winner'
 
@@ -68,14 +70,11 @@ export default class Game extends React.Component {
   render() {
     const history = this.state.history
     const currentBoard = history[this.state.stepNumber]
-    const nextPlayer = this.state.xIsNext ? 'X' : 'O'
 
     return (
       <div className="game">
         <div className="game-board">
-          <BoardStatus
-            board={currentBoard}
-            nextPlayer={nextPlayer} />
+          <BoardStatusContainer />
           <div className="board-container">
             <Board
               rowSize={3}

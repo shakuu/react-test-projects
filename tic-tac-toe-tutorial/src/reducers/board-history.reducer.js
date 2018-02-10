@@ -1,10 +1,10 @@
-import { playerMove, PLAYER_MOVE } from '../actions/player-move.action'
+import { PLAYER_MOVE } from '../actions/player-move.action'
 
 import calculateWinner from '../utilities/calculate-winner'
 
 const initialBoardHistory = {
   historyIndex: 0,
-  history: {
+  history: [{
     squares: Array.from({ length: 9 }).map(square => null),
     clickedSquare: null,
     player: null,
@@ -12,7 +12,7 @@ const initialBoardHistory = {
     isWon: false,
     isDraw: false,
     winningLine: null
-  }
+  }]
 }
 
 export default function boardHistory(state = initialBoardHistory, action) {

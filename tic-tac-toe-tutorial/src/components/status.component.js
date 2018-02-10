@@ -2,19 +2,13 @@ import React from 'react'
 
 import { Alert } from 'reactstrap';
 
-export default function BoardStatus(props) {
-
-  const status = props.board.isWon
-    ? `Winner is ${props.board.player}`
-    : props.board.isDraw
-      ? 'Draw'
-      : `Next player: ${props.nextPlayer}`
+export default function BoardStatus({ statusMessage }) {
 
   return (
     <div className="game-status">
       <Alert
         color="info">
-        {status}
+        {statusMessage}
       </Alert>
     </div>
   )

@@ -2,8 +2,8 @@ import { combineReducers } from 'redux'
 
 import boardHistory from './board-history.reducer'
 
-const game = combineReducers({
+const gameApp = combineReducers({
   boardHistory
 })
 
-export default game
+export default gameApp
