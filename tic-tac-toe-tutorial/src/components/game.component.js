@@ -1,43 +1,12 @@
 import React from 'react'
 
-// import Board from './board.component'
-// import BoardHistory from './history.component'
-// import BoardStatus from './status.component'
-
 import BoardStatusContainer from '../containers/BoardStatus.container'
 import BoardContainer from '../containers/Board.container'
 import HistoryContainer from '../containers/History.container'
 
-// import calculateWinner from '../utilities/calculate-winner'
-
 import '../styles/game.css'
 
 export default class Game extends React.Component {
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      history: [{
-        squares: Array(9).fill(null),
-        clickedSquare: null,
-        player: null,
-        isWon: false,
-        isDraw: false,
-        winningLine: null
-      }],
-      stepNumber: 0,
-      xIsNext: true
-    }
-  }
-
-  handelJumpTo(stepNumber) {
-
-    this.setState({
-      stepNumber: stepNumber,
-      xIsNext: stepNumber % 2 === 0
-    })
-  }
 
   render() {
 

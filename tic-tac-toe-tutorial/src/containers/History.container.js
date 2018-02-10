@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 
 import { navigateHistory } from '../actions/navigate-history.action'
+import { HistorySortTypes } from '../actions/sort-history.action'
 
 import BoardHistory from '../components/history.component'
 
@@ -34,14 +35,57 @@ function getHistoryButtonLabel(stepNumber, historyItem) {
   return `#${stepNumber} ${historyItem.player} Move: ${coordinatesLabel}`
 }
 
+function getSortByPlayerCallback(xFirst) {
+
+  const firstPlayer = xFirst ? 'X' : 'O'
+
+  return (itemA, itemB) => {
+
+    const itemAPlayer = itemA.player
+    const itemBPlayer = itemB.player
+    if (itemAPlayer === itemBPlayer) {
+      return 0
+    }
+
+    if (itemAPlayer === firstPlayer) {
+      return -1
+    }
+
+    if (itemBPlayer === firstPlayer) {
+      return 1
+    }
+  }
+}
+
 const mapStateToProps = state => {
 
-  const historyItems = state.boardHistory.history.map((item, index) => {
+  let historyItems = state.boardHistory.history.map((item, index) => {
     return {
       index,
-      description: getHistoryButtonLabel(index, item)
+      description: getHistoryButtonLabel(index, item),
+      player: item.player
     }
   })
+
+  if (state.sortHistory !== HistorySortTypes.default) {
+    switch (state.sortHistory) {
+
+      case HistorySortTypes.newestFirst:
+        const historyItemsLength = historyItems.length
+        historyItems = historyItems.map((_, index) => {
+          return historyItems[historyItemsLength - 1 - index]
+        })
+        break
+      case HistorySortTypes.xFirst:
+        historyItems = historyItems.sort(getSortByPlayerCallback(true))
+        break
+      case HistorySortTypes.oFirst:
+        historyItems = historyItems.sort(getSortByPlayerCallback(false))
+        break
+      default:
+        break
+    }
+  }
 
   return {
     historyItems,

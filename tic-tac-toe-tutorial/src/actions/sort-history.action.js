@@ -1,7 +1,10 @@
 export const SORT_HISTORY = 'SORT_HISTORY'
 
 export const HistorySortTypes = {
-  default: 'default'
+  default: 'Default',
+  newestFirst: 'Newest First',
+  xFirst: 'X Moves First',
+  oFirst: 'O Moves First'
 }
 
 export function sortHistory(sort) {

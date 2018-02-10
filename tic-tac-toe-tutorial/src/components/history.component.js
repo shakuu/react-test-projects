@@ -31,15 +31,7 @@ export default class BoardHistory extends React.Component {
     })
   }
 
-  shouldDisabledropdown(historyLength) {
-    historyLength = historyLength || 1;
-
-    // return historyLength <= 1;
-    return false;
-  }
-
   render() {
-    const historyLength = this.props.historyItems.length;
 
     return (
       <div className="game-history">
