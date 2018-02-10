@@ -5,36 +5,6 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 
 import '../styles/history.css'
 
-const boardCoordinatesByIndex = new Map([
-  [0, 'Row: 1, Col 1'],
-  [1, 'Row: 1, Col 2'],
-  [2, 'Row: 1, Col 3'],
-  [3, 'Row: 2, Col 1'],
-  [4, 'Row: 2, Col 2'],
-  [5, 'Row: 2, Col 3'],
-  [6, 'Row: 3, Col 1'],
-  [7, 'Row: 3, Col 2'],
-  [8, 'Row: 3, Col 3'],
-])
-
-function getHistoryButtonLabel(stepNumber, historyItem) {
-
-  const isFirstItem = stepNumber === 0
-  if (isFirstItem) {
-    return 'Game start'
-  }
-
-  const coordinatesLabel = boardCoordinatesByIndex.get(historyItem.clickedSquare)
-  if (historyItem.isWon) {
-    return `#${stepNumber} ${historyItem.player} Won: ${coordinatesLabel}`
-  }
-  if (historyItem.isDraw) {
-    return `#${stepNumber} ${historyItem.player} Draw: ${coordinatesLabel}`
-  }
-
-  return `#${stepNumber} ${historyItem.player} Move: ${coordinatesLabel}`
-}
-
 export default class BoardHistory extends React.Component {
 
   constructor(props) {
@@ -68,8 +38,7 @@ export default class BoardHistory extends React.Component {
   }
 
   render() {
-    const historyLength = this.props.history.length;
-    const isAscending = this.state.isAscending
+    const historyLength = this.props.historyItems.length;
 
     return (
       <div className="game-history">
@@ -84,19 +53,15 @@ export default class BoardHistory extends React.Component {
           </DropdownMenu>
         </ButtonDropdown>
         <ListGroup>
-          {Array.from({ length: historyLength }).map((_, index) => {
-
-            const stepNumber = isAscending ? index : historyLength - 1 - index
-            const historyItem = this.props.history[stepNumber]
-            const description = getHistoryButtonLabel(stepNumber, historyItem)
+          {this.props.historyItems.map((item, index) => {
 
             return (
               <ListGroupItem
-                key={stepNumber}
+                key={item.index}
                 tag="button"
-                active={this.props.stepNumber === stepNumber}
-                onClick={() => this.props.onJumpTo(stepNumber)}>
-                {description}
+                active={this.props.historyIndex === item.index}
+                onClick={() => this.props.onClick(item.index)}>
+                {item.description}
               </ListGroupItem>
             )
           })}

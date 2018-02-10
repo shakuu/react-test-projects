@@ -1,4 +1,5 @@
 import { PLAYER_MOVE } from '../actions/player-move.action'
+import { NAVIGATE_HISTORY } from '../actions/navigate-history.action'
 
 import calculateWinner from '../utilities/calculate-winner'
 
@@ -20,6 +21,8 @@ export default function boardHistory(state = initialBoardHistory, action) {
   switch (action.type) {
     case PLAYER_MOVE:
       return playerMove(state, action)
+    case NAVIGATE_HISTORY:
+      return Object.assign({}, state, { historyIndex: action.historyIndex })
     default:
       return state
   }
