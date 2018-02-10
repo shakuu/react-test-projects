@@ -33,7 +33,7 @@ function playerMove(state, action) {
   const history = state.history.slice(0, state.historyIndex + 1)
   const previousBoard = state.history[state.historyIndex]
 
-  if (previousBoard.isWon || previousBoard.isDraw || previousBoard[action.squareIndex]) {
+  if (previousBoard.isWon || previousBoard.isDraw || previousBoard.squares[action.move.squareIndex]) {
     return state
   }
 
