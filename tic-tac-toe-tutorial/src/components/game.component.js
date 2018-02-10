@@ -1,10 +1,11 @@
 import React from 'react'
 
-import Board from './board.component'
+// import Board from './board.component'
 import BoardHistory from './history.component'
 // import BoardStatus from './status.component'
 
 import BoardStatusContainer from '../containers/BoardStatus.container'
+import BoardContainer from '../containers/Board.container'
 
 import calculateWinner from '../utilities/calculate-winner'
 
@@ -68,18 +69,13 @@ export default class Game extends React.Component {
   }
 
   render() {
-    const history = this.state.history
-    const currentBoard = history[this.state.stepNumber]
 
     return (
       <div className="game">
         <div className="game-board">
           <BoardStatusContainer />
           <div className="board-container">
-            <Board
-              rowSize={3}
-              board={currentBoard}
-              onClick={(i) => this.handleBoardClick(i)} />
+            <BoardContainer />
           </div>
         </div>
         <div className="game-info">

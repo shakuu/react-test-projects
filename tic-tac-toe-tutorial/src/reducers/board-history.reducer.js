@@ -35,11 +35,11 @@ function playerMove(state, action) {
   }
 
   const squares = [...previousBoard.squares]
-  const clickedSquare = action.squareIndex
-  const player = action.playerName
+  const clickedSquare = action.move.squareIndex
+  const player = action.move.playerName
   const nextPlayer = player === 'X' ? 'O' : 'X'
 
-  squares[action.squareIndex] = action.playerName
+  squares[action.move.squareIndex] = action.move.playerName
   const winningLine = calculateWinner(squares)
   const isWon = winningLine !== null;
   const isDraw = isWon === false && squares.every(square => square !== null)

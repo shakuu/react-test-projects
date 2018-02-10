@@ -25,7 +25,7 @@ export default function Board(props) {
                 <Square key={col}
                   value={squareValue}
                   highlightSquare={highlightSquare}
-                  onClick={() => props.onClick(squareIndex)} />
+                  onClick={() => props.onClick(props.board.nextPlayer, squareIndex)} />
               )
             })}
           </div>
